@@ -44,7 +44,7 @@ Choose either the CentOS7 or RHEL7 based image:
 	This image is available on DockerHub. To download it run:
 
 	```
-	$ docker pull openshift/jenkins-1-centos7
+	$ docker pull openshift/jenkins-2-centos7
 	```
 
 	To build a Jenkins image from scratch run:
@@ -98,7 +98,7 @@ as described in this documentation, in addition it will also include all plugins
 To create derived image, you have to write following `Dockerfile`:
 
 ```
-FROM openshift/jenkins-1-centos7
+FROM openshift/jenkins-2-centos7
 COPY plugins.txt /opt/openshift/configuration/plugins.txt
 RUN /usr/local/bin/install-plugins.sh /opt/openshift/configuration/plugins.txt
 ```
@@ -140,7 +140,7 @@ folder, so you can also include additional files (like `credentials.xml`, etc.).
 To build your customized Jenkins image, you can then execute following command:
 
 ```console
-$ s2i build https://github.com/your/repository openshift/jenkins-1-centos7 your_image_name
+$ s2i build https://github.com/your/repository openshift/jenkins-2-centos7 your_image_name
 ```
 NOTE:  if instead of adding a plugin you want to replace an existing plugin via dropping the binary plugin in the `./plugins` directory,
 make sure the filename ends in `.jpi`.
@@ -173,12 +173,12 @@ This plugin allows slaves to be dynamically provisioned on multiple Docker hosts
 Usage
 ---------------------------------
 
-For this, we will assume that you are using the `openshift/jenkins-1-centos7` image.
+For this, we will assume that you are using the `openshift/jenkins-2-centos7` image.
 If you want to set only the mandatory environment variables and store the database
 in the `/tmp/jenkins` directory on the host filesystem, execute the following command:
 
 ```
-$ docker run -d -e JENKINS_PASSWORD=<password> -v /tmp/jenkins:/var/lib/jenkins openshift/jenkins-1-centos7
+$ docker run -d -e JENKINS_PASSWORD=<password> -v /tmp/jenkins:/var/lib/jenkins openshift/jenkins-2-centos7
 ```
 
 
